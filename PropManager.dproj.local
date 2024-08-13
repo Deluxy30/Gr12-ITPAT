@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/10/10 18:22:41.564.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Deluxy\Documents\RAD Studio\Projects\Login.pas</Transaction>
+    <Transaction>2023/10/10 18:22:41.564.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Deluxy\Documents\RAD Studio\Projects\Login.dfm</Transaction>
+    <Transaction>2023/10/10 18:23:18.449.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit2.pas=C:\Users\Deluxy\Documents\RAD Studio\Projects\SignUp.pas</Transaction>
+    <Transaction>2023/10/10 18:23:18.449.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit2.dfm=C:\Users\Deluxy\Documents\RAD Studio\Projects\SignUp.dfm</Transaction>
+    <Transaction>2023/10/10 18:26:28.592.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Deluxy\Documents\RAD Studio\Projects\Main.pas</Transaction>
+    <Transaction>2023/10/10 18:26:28.592.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Deluxy\Documents\RAD Studio\Projects\Main.dfm</Transaction>
+    <Transaction>2023/10/10 18:29:46.131.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Deluxy\Documents\RAD Studio\Projects\conTuckShopDB.pas</Transaction>
+    <Transaction>2023/10/10 18:29:46.131.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Deluxy\Documents\RAD Studio\Projects\conTuckShopDB.dfm</Transaction>
+    <Transaction>2023/10/10 18:34:43.693.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Main.pas=C:\Users\Deluxy\Downloads\PAT2023\Main.pas</Transaction>
+    <Transaction>2023/10/10 18:34:43.693.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Main.dfm=C:\Users\Deluxy\Downloads\PAT2023\Main.dfm</Transaction>
+    <Transaction>2023/10/10 18:38:27.455.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Deluxy\Downloads\PAT2023\conTuckShop.pas</Transaction>
+    <Transaction>2023/10/10 18:38:27.455.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Deluxy\Downloads\PAT2023\conTuckShop.dfm</Transaction>
+    <Transaction>2023/10/10 18:38:29.965.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\SignUp.pas=C:\Users\Deluxy\Downloads\PAT2023\SignUp.pas</Transaction>
+    <Transaction>2023/10/10 18:38:29.965.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\SignUp.dfm=C:\Users\Deluxy\Downloads\PAT2023\SignUp.dfm</Transaction>
+    <Transaction>2023/10/10 18:38:31.304.pas,C:\Users\Deluxy\Documents\RAD Studio\Projects\Login.pas=C:\Users\Deluxy\Downloads\PAT2023\Login.pas</Transaction>
+    <Transaction>2023/10/10 18:38:31.304.dfm,C:\Users\Deluxy\Documents\RAD Studio\Projects\Login.dfm=C:\Users\Deluxy\Downloads\PAT2023\Login.dfm</Transaction>
+    <Transaction>2023/10/10 18:38:39.478.dproj,C:\Users\Deluxy\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\Deluxy\Downloads\PAT2023\Project1.dproj</Transaction>
+    <Transaction>2023/10/22 19:53:27.553.pas,C:\Users\Deluxy\Desktop\PAT2023\Unit1.pas=C:\Users\Deluxy\Desktop\PAT2023\NewProd.pas</Transaction>
+    <Transaction>2023/10/22 19:53:27.553.dfm,C:\Users\Deluxy\Desktop\PAT2023\Unit1.dfm=C:\Users\Deluxy\Desktop\PAT2023\NewProd.dfm</Transaction>
+    <Transaction>2023/10/22 19:54:03.113.dproj,C:\Users\Deluxy\Desktop\PAT2023\Project1.dproj=C:\Users\Deluxy\Desktop\PAT2023\Project1.dproj</Transaction>
+    <Transaction>2023/10/22 19:54:09.597.pas,C:\Users\Deluxy\Desktop\PAT2023\NewProduct.pas=</Transaction>
+    <Transaction>2023/10/22 19:54:09.597.dfm,C:\Users\Deluxy\Desktop\PAT2023\NewProduct.dfm=</Transaction>
+    <Transaction>2023/10/22 20:03:00.045.dproj,C:\Users\Deluxy\Desktop\PAT2023\Project1.dproj=C:\Users\Deluxy\Desktop\PAT2023\TSManager.dproj</Transaction>
+    <Transaction>2023/10/22 20:03:10.732.dproj,C:\Users\Deluxy\Desktop\PAT2023\TSManager.dproj=C:\Users\Deluxy\Desktop\PAT2023\TSManager.dproj</Transaction>
+    <Transaction>2023/10/22 20:03:15.735.dproj,C:\Users\Deluxy\Desktop\PAT2023\TSManager.dproj=C:\Users\Deluxy\Desktop\PAT2023\TSManager.dproj</Transaction>
+    <Transaction>2023/10/27 17:15:55.637.pas,E:\PAT2023\conTuckShop.pas=</Transaction>
+    <Transaction>2023/10/27 17:15:55.637.dfm,E:\PAT2023\conTuckShop.dfm=</Transaction>
+    <Transaction>2023/10/27 17:17:53.642.pas,E:\PAT2023\Unit1.pas=E:\PAT2023\conTuckShopDB.pas</Transaction>
+    <Transaction>2023/10/27 17:17:53.642.dfm,E:\PAT2023\Unit1.dfm=E:\PAT2023\conTuckShopDB.dfm</Transaction>
+    <Transaction>2024/07/22 20:38:58.241.dproj,D:\OSWALD_AUMULLER_PAT2024\TSManager.dproj=D:\OSWALD_AUMULLER_PAT2024\PropManager.dproj</Transaction>
+    <Transaction>2024/07/22 20:40:48.822.pas,D:\OSWALD_AUMULLER_PAT2024\conTuckShopDB.pas=D:\OSWALD_AUMULLER_PAT2024\conPropDB.pas</Transaction>
+    <Transaction>2024/07/22 20:40:48.822.dfm,D:\OSWALD_AUMULLER_PAT2024\conTuckShopDB.dfm=D:\OSWALD_AUMULLER_PAT2024\conPropDB.dfm</Transaction>
+    <Transaction>2024/08/12 13:18:39.159.pas,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.pas=D:\usb backup\OSWALD_AUMULLER_PAT2024\conPropImplementDB.pas</Transaction>
+    <Transaction>2024/08/12 13:18:39.159.dfm,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.dfm=D:\usb backup\OSWALD_AUMULLER_PAT2024\conPropImplementDB.dfm</Transaction>
+    <Transaction>2024/08/13 14:46:49.101.pas,D:\PAT sample 12-08-2024\Validation_U.pas=D:\usb backup\OSWALD_AUMULLER_PAT2024\Validation_U.pas</Transaction>
+    <Transaction>2024/08/13 18:04:04.773.pas,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit3.pas=D:\usb backup\OSWALD_AUMULLER_PAT2024\SubmitApp.pas</Transaction>
+    <Transaction>2024/08/13 18:04:04.773.dfm,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit3.dfm=D:\usb backup\OSWALD_AUMULLER_PAT2024\SubmitApp.dfm</Transaction>
+    <Transaction>2024/08/13 19:42:32.548.pas,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.pas=D:\usb backup\OSWALD_AUMULLER_PAT2024\Admin.pas</Transaction>
+    <Transaction>2024/08/13 19:42:32.548.dfm,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.dfm=D:\usb backup\OSWALD_AUMULLER_PAT2024\Admin.dfm</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="__history"/>
+    <File Path="__history\NewProduct.dfm.~2~"/>
+    <File Path="Login.pas"/>
+    <File Path="Login.dfm"/>
+    <File Path="SignUp.pas"/>
+    <File Path="SignUp.dfm"/>
+    <File Path="Main.pas"/>
+    <File Path="Main.dfm"/>
+    <File Path="NewProd.pas"/>
+    <File Path="NewProd.dfm"/>
+    <File Path="conPropDB.pas"/>
+    <File Path="conPropDB.dfm"/>
+    <File Path="conPropImplementDB.pas"/>
+    <File Path="conPropImplementDB.dfm"/>
+    <File Path="Validation_U.pas"/>
+    <File Path="SubmitApp.pas"/>
+    <File Path="SubmitApp.dfm"/>
+    <File Path="Admin.pas"/>
+    <File Path="Admin.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>
