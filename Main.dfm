@@ -12,6 +12,7 @@ object frmMainDB: TfrmMainDB
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  ScreenSnap = True
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -20,162 +21,276 @@ object frmMainDB: TfrmMainDB
     Top = 32
     Width = 169
     Height = 169
+    Stretch = True
   end
   object img4: TImage
     Left = 36
     Top = 288
     Width = 169
     Height = 169
+    Stretch = True
   end
   object img2: TImage
     Left = 396
     Top = 32
     Width = 169
     Height = 169
+    Stretch = True
   end
   object img3: TImage
     Left = 736
     Top = 32
     Width = 169
     Height = 169
+    Stretch = True
   end
   object img5: TImage
     Left = 396
     Top = 288
     Width = 169
     Height = 169
+    Stretch = True
   end
   object img6: TImage
     Left = 736
     Top = 288
     Width = 169
     Height = 169
+    Stretch = True
   end
   object lblImg1Address: TLabel
-    Left = 224
+    Left = 211
     Top = 64
-    Width = 73
-    Height = 13
+    Width = 117
+    Height = 26
     Caption = 'lblImg1Address'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg1Area: TLabel
-    Left = 224
+    Left = 211
     Top = 104
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg1Price: TLabel
-    Left = 224
+    Left = 211
     Top = 144
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg2Address: TLabel
-    Left = 592
+    Left = 571
     Top = 64
-    Width = 73
-    Height = 13
+    Width = 117
+    Height = 26
     Caption = 'lblImg2Address'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg2Area: TLabel
-    Left = 592
+    Left = 571
     Top = 104
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg2Price: TLabel
-    Left = 592
+    Left = 571
     Top = 144
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg3Address: TLabel
-    Left = 944
+    Left = 924
     Top = 64
-    Width = 73
-    Height = 13
+    Width = 117
+    Height = 26
     Caption = 'lblImg3Address'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg3Area: TLabel
-    Left = 944
+    Left = 924
     Top = 104
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg3Price: TLabel
-    Left = 944
+    Left = 924
     Top = 144
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg5Address: TLabel
-    Left = 592
+    Left = 571
     Top = 312
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg5Area: TLabel
-    Left = 592
+    Left = 571
     Top = 352
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg5Price: TLabel
-    Left = 592
+    Left = 571
     Top = 392
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg6Address: TLabel
-    Left = 944
+    Left = 924
     Top = 312
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg6Area: TLabel
-    Left = 944
+    Left = 924
     Top = 352
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg6Price: TLabel
-    Left = 944
+    Left = 924
     Top = 392
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg4Address: TLabel
-    Left = 224
+    Left = 211
     Top = 312
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg4Area: TLabel
-    Left = 224
+    Left = 211
     Top = 352
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lblImg4Price: TLabel
-    Left = 224
+    Left = 211
     Top = 392
-    Width = 31
-    Height = 13
+    Width = 50
+    Height = 26
     Caption = 'Label8'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Segoe Print'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object btnExit: TButton
     Left = 36
@@ -186,21 +301,23 @@ object frmMainDB: TfrmMainDB
     TabOrder = 0
     OnClick = btnExitClick
   end
-  object Button6: TButton
+  object btnNextPage: TButton
     Left = 980
     Top = 528
     Width = 75
     Height = 25
     Caption = 'Next Page'
     TabOrder = 1
+    OnClick = btnNextPageClick
   end
-  object Button7: TButton
+  object btnPreviousPage: TButton
     Left = 899
     Top = 528
     Width = 75
     Height = 25
     Caption = 'Previous Page'
     TabOrder = 2
+    OnClick = btnPreviousPageClick
   end
   object btnSearch: TButton
     Left = 821
@@ -252,20 +369,28 @@ object frmMainDB: TfrmMainDB
     Caption = 'Display'
     TabOrder = 6
   end
-  object btnAdminMgmt: TButton
-    Left = 1013
-    Top = 599
-    Width = 107
-    Height = 25
-    Caption = 'Admin Management'
-    Enabled = False
-    TabOrder = 7
-  end
   object MainMenu1: TMainMenu
     Left = 1088
     Top = 8
     object File1: TMenuItem
       Caption = 'File'
+    end
+    object Exit1: TMenuItem
+      Caption = 'Exit'
+      OnClick = Exit1Click
+    end
+    object Admin1: TMenuItem
+      Caption = 'Admin'
+      object ManageUsers1: TMenuItem
+        Caption = 'Manage Users'
+      end
+      object AddProperties1: TMenuItem
+        Caption = 'Manage Properties'
+        OnClick = AddProperties1Click
+      end
+      object ManageAgents1: TMenuItem
+        Caption = 'Manage Agents'
+      end
     end
   end
   object OpenDialog1: TOpenDialog

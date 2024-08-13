@@ -2606,7 +2606,7 @@ object frmSignUp: TfrmSignUp
     TabOrder = 4
     TextHint = 'example : John'
   end
-  object Edit1: TEdit
+  object edtID: TEdit
     Left = 324
     Top = 190
     Width = 193

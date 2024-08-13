@@ -56,33 +56,37 @@ begin
     lbl.Caption := 'Connecting to server';
     Timer1.Enabled := true;
     Timer1.Tag := 0; // Used to keep track of the simulation stage
-end;
+  end;
 end;
 
 procedure TSubmitApplication.Timer1Timer(Sender: TObject);
 begin
- // Update ProgressBar and Label text based on Timer Tag
+  // Update ProgressBar and Label text based on Timer Tag
   case Timer1.Tag of
     0:
       begin
+        Sleep(1500);
         ProgressBar1.Position := 25;
         lbl.Caption := 'Encrypting Traffic';
         Timer1.Tag := 1;
       end;
     1:
       begin
+        Sleep(1500);
         ProgressBar1.Position := 50;
         lbl.Caption := 'Uploading Documents';
         Timer1.Tag := 2;
       end;
     2:
       begin
+        Sleep(1500);
         ProgressBar1.Position := 75;
         lbl.Caption := 'Finalizing Submission';
         Timer1.Tag := 3;
       end;
     3:
       begin
+        Sleep(1500);
         ProgressBar1.Position := 100;
         lbl.Caption := 'Submitted Successfully';
         Timer1.Enabled := FALSE; // Stop the timer

@@ -1,9 +1,9 @@
 object frmNew: TfrmNew
   Left = 0
   Top = 0
-  Caption = 'New Product'
+  Caption = 'Property Management'
   ClientHeight = 479
-  ClientWidth = 993
+  ClientWidth = 616
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,13 +13,6 @@ object frmNew: TfrmNew
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Label7: TLabel
-    Left = 746
-    Top = 247
-    Width = 34
-    Height = 13
-    Caption = 'Expiry:'
-  end
   object Label5: TLabel
     Left = 46
     Top = 35
@@ -28,11 +21,11 @@ object frmNew: TfrmNew
     Caption = 'Agent:'
   end
   object Label4: TLabel
-    Left = 110
-    Top = 363
-    Width = 39
+    Left = 46
+    Top = 360
+    Width = 23
     Height = 13
-    Caption = 'Markup:'
+    Caption = 'Size:'
   end
   object Label3: TLabel
     Left = 46
@@ -49,64 +42,69 @@ object frmNew: TfrmNew
     Caption = ' Price:'
   end
   object Label1: TLabel
-    Left = 746
-    Top = 13
-    Width = 54
+    Left = 390
+    Top = 35
+    Width = 55
     Height = 13
-    Caption = 'On Special:'
+    Caption = 'Bathrooms:'
   end
   object Label6: TLabel
-    Left = 746
-    Top = 169
-    Width = 30
+    Left = 390
+    Top = 96
+    Width = 51
     Height = 13
-    Caption = 'Stock:'
+    Caption = 'Bedrooms:'
+  end
+  object Label7: TLabel
+    Left = 417
+    Top = 147
+    Width = 24
+    Height = 13
+    Caption = 'Pool:'
+  end
+  object Label8: TLabel
+    Left = 388
+    Top = 203
+    Width = 57
+    Height = 13
+    Caption = 'Pet Friendly'
   end
   object Confirm: TButton
-    Left = 746
-    Top = 306
+    Left = 498
+    Top = 400
     Width = 75
     Height = 25
     Caption = 'Confirm'
     TabOrder = 0
     OnClick = ConfirmClick
   end
-  object DateTimePicker1: TDateTimePicker
-    Left = 738
-    Top = 266
-    Width = 186
-    Height = 21
-    Date = 45221.821135879640000000
-    Time = 45221.821135879640000000
-    TabOrder = 1
-  end
-  object cmbSupplier: TComboBox
-    Left = 106
+  object cmbAgent: TComboBox
+    Left = 160
     Top = 32
     Width = 145
     Height = 21
-    TabOrder = 2
+    TabOrder = 1
   end
-  object edtSuppPrice: TEdit
-    Left = 112
+  object edtPrice: TEdit
+    Left = 160
     Top = 144
     Width = 121
     Height = 21
-    TabOrder = 3
+    TabOrder = 2
   end
-  object edtItem: TEdit
+  object edtAddress: TEdit
     Left = 160
     Top = 88
     Width = 121
     Height = 21
-    TabOrder = 4
+    TabOrder = 3
   end
-  object edtMarkUp: TEdit
-    Left = 176
-    Top = 360
+  object edtSize: TEdit
+    Left = 160
+    Top = 357
     Width = 121
     Height = 21
-    TabOrder = 5
+    TabOrder = 4
   end
   object Back: TButton
     Left = 8
@@ -114,28 +112,61 @@ object frmNew: TfrmNew
     Width = 75
     Height = 25
     Caption = 'Back'
-    TabOrder = 6
+    TabOrder = 5
     OnClick = BackClick
   end
-  object rgpSpecial: TRadioGroup
+  object rgpSelection: TRadioGroup
     Left = 46
-    Top = 182
-    Width = 185
-    Height = 105
-    Caption = 'Area'
-    Items.Strings = (
-      'Yes'
-      'No')
-    TabOrder = 7
-  end
-  object senStock: TSpinEdit
-    Left = 746
     Top = 188
+    Width = 190
+    Height = 145
+    Caption = 'Properties'
+    Items.Strings = (
+      'Durban-North'
+      'Glenashley'
+      'Umhlanga'
+      'Phoenix'
+      'Salt-Rock'
+      'Pietermaritzburg'
+      'Umdloti')
+    TabOrder = 6
+  end
+  object sedBathroom: TSpinEdit
+    Left = 476
+    Top = 32
+    Width = 121
+    Height = 22
+    MaxValue = 0
+    MinValue = 0
+    TabOrder = 7
+    Value = 0
+  end
+  object sedBedroom: TSpinEdit
+    Left = 476
+    Top = 93
     Width = 121
     Height = 22
     MaxValue = 0
     MinValue = 0
     TabOrder = 8
     Value = 0
+  end
+  object chkPool: TCheckBox
+    Left = 476
+    Top = 146
+    Width = 97
+    Height = 17
+    TabOrder = 9
+  end
+  object chkPet: TCheckBox
+    Left = 476
+    Top = 202
+    Width = 21
+    Height = 17
+    TabOrder = 10
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 432
+    Top = 304
   end
 end

@@ -22,7 +22,7 @@ type
     lblPasswordSu: TLabel;
     Image1: TImage;
     Label2: TLabel;
-    Edit1: TEdit;
+    edtID: TEdit;
     Label3: TLabel;
     RadioGroup1: TRadioGroup;
     Label1: TLabel;
@@ -40,7 +40,7 @@ type
 var
   frmSignUp: TfrmSignUp;
   sFirstName, sSurname: string;
-  objVal : DataValidation;
+  objVal: DataValidation;
 
 implementation
 
@@ -54,23 +54,24 @@ end;
 
 procedure TfrmSignUp.btnSignUpClick(Sender: TObject);
 var
-  sUsername, sPassword, sGender: string;
+  sUsername, sPassword, sID, sGender: string;
   I, J, K: integer;
 begin
-objVal := DataValidation.create;
+  objVal := DataValidation.create;
   sUsername := edtUsername.Text;
+  sID := edtID.Text;
   sPassword := edtPassword.Text;
   sFirstName := edtFirstName.Text;
   sGender := RadioGroup1.items[RadioGroup1.ItemIndex];
   btnSignUp.Enabled := False;
   if objVal.isValidPassword(sPassword) = False then
   begin
-    if length(sPassword) < 8 then // Length validation 
+    if length(sPassword) < 8 then // Length validation
     begin
       showmessage('Password must be more than 8 characters');
       edtPassword.SetFocus;
       exit;
-    end; // if length(sPassword)<8 then 
+    end; // if length(sPassword)<8 then
 
   end;
 
@@ -79,7 +80,7 @@ objVal := DataValidation.create;
     showmessage('First Name cannot be empty');
     edtFirstName.SetFocus;
     exit;
-  end // if (sFirstName='') then 
+  end // if (sFirstName='') then
   else
   begin
     if (sUsername = '') then
@@ -89,15 +90,15 @@ objVal := DataValidation.create;
     end;
   end;
 
-  for I := 1 to length(sFirstName) do // Data type validation 
+  for I := 1 to length(sFirstName) do // Data type validation
   begin
     if NOT CharInSet(sFirstName[I], ['a' .. 'z', 'A' .. 'Z']) then
     begin
       showmessage('Please enter only alphabetic characters for First Name');
       edtFirstName.SetFocus;
       exit;
-    end; // if NOT CharInSet (sFirstName[I],['a'..'z','A'..'Z']) then 
-  end; // for I := 0 to length(sFirstName) do 
+    end; // if NOT CharInSet (sFirstName[I],['a'..'z','A'..'Z']) then
+  end; // for I := 0 to length(sFirstName) do
 
   btnSignUp.Enabled := True;
 
@@ -111,11 +112,13 @@ objVal := DataValidation.create;
     dbmPropDB.tblUsers['FirstName'] := sFirstName;
     dbmPropDB.tblUsers['Password'] := sPassword;
     dbmPropDB.tblUsers['Gender'] := sGender;
+    dbmPropDB.tblUsers['ID'] := sID;
+    dbmPropDB.tblUsers['UserType'] := 'Standard';
     dbmPropDB.tblUsers.Post;
 
     showmessage('New user registration successful.');
 
-  end // if MessageDlg('Have you confirmed the username and password??' , mtConfirmation, mbYesNo, 0) = mrYes then 
+  end // if MessageDlg('Have you confirmed the username and password??' , mtConfirmation, mbYesNo, 0) = mrYes then
   else
     exit;
 
@@ -123,7 +126,7 @@ end;
 
 procedure TfrmSignUp.chkShowClick(Sender: TObject);
 begin
- if chkShow.Checked then
+  if chkShow.Checked then
     edtPassword.PasswordChar := #0;
   if chkShow.Checked = False then
     edtPassword.PasswordChar := '*';
