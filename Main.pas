@@ -62,8 +62,14 @@ type
 
     procedure LoadPropertiesForPage(Page: Integer);
     procedure btnPreviousPageClick(Sender: TObject);
+    function IsNumeric(const Value: string): Boolean;
+    procedure btnDisplayClick(Sender: TObject);
   private
     { Private declarations }
+    imgArray: array [1 .. 6] of TImage;
+    lblAddressArray: array [1 .. 6] of TLabel;
+    lblPriceArray: array [1 .. 6] of TLabel;
+    lblAreaArray: array [1 .. 6] of TLabel;
   public
     { Public declarations }
   end;
@@ -76,13 +82,43 @@ var
 implementation
 
 uses
-  NewProd;
+  NewProd, Admin;
 {$R *.dfm}
 
 procedure TfrmMainDB.AddProperties1Click(Sender: TObject);
 begin
-  frmMainDB.Close;
-  frmNew.Show;
+  frmMainDB.Hide;
+  AdminManagement.Show;
+end;
+
+procedure TfrmMainDB.btnDisplayClick(Sender: TObject);
+var
+  sSelectedArea: string;
+begin
+  sSelectedArea := rgpSelection.Items[rgpSelection.ItemIndex];
+
+  dbmPropDB.qryProperties.Close;
+
+  if sSelectedArea = 'All' then
+  begin
+    // Display all properties
+    dbmPropDB.qryProperties.SQL.Text := 'SELECT * FROM tblProperties';
+  end
+  else
+  begin
+    // Display properties for the selected area
+    dbmPropDB.qryProperties.SQL.Text :=
+      'SELECT * FROM tblProperties WHERE Area = :SelectedArea';
+    dbmPropDB.qryProperties.Parameters.ParamByName('SelectedArea').Value :=
+      sSelectedArea;
+  end;
+
+  dbmPropDB.qryProperties.Open;
+
+  if dbmPropDB.qryProperties.IsEmpty then
+    ShowMessage('No properties found in ' + sSelectedArea)
+  else
+    LoadPropertiesForPage(1); // Load the results starting from the first page
 end;
 
 procedure TfrmMainDB.btnExitClick(Sender: TObject);
@@ -93,51 +129,85 @@ begin
   end
   else
   begin
-    showMessage('Log Out Cancelled');
+    ShowMessage('Log Out Cancelled');
   end;
 
 end;
 
 procedure TfrmMainDB.btnSearchClick(Sender: TObject);
 var
-  sTarget: String;
+  sSearchTerm: string;
+  sProp, sAgent: string;
   bFound: Boolean;
-  iStock: Integer;
 begin
-  iStock := 0;
-  // Search for an Item
-  sTarget := InputBox('Propedex Database', 'Enter an item to search for', '');
-  bFound := FALSE;
-  dbmPropDB.tblProperties.First;
-  while (not dbmPropDB.tblProperties.Eof) AND (NOT bFound) do
+  sSearchTerm := InputBox('Search Property', 'Enter Property ID or Address:',
+    '');
+  bFound := False;
+  sProp := Copy(sSearchTerm, 1, 3);
+  sAgent := Copy(sSearchTerm, 1, 2);
+  if sSearchTerm <> '' then
   begin
-    if sTarget = dbmPropDB.tblProperties['Address'] or dbmPropDB.tblProperties
-      ['Area'] or dbmPropDB.tblProperties['PropertyID']
-      or dbmPropDB.tblProperties['AgentID'] then
+    if sProp = 'PRP' then
     begin
-      iStock := dbmPropDB.tblProperties['Stock'];
-      bFound := true;
+      // Search by PropertyID
+      dbmPropDB.qryProperties.Close;
+      dbmPropDB.qryProperties.SQL.Text :=
+        'SELECT * FROM tblProperties WHERE PropertyID = :SearchTerm';
+      dbmPropDB.qryProperties.Parameters.ParamByName('SearchTerm').Value :=
+        sSearchTerm;
+    end
+    else if sAgent = 'AT' then
+    begin
+      // Search by AgentID
+      dbmPropDB.qryProperties.Close;
+      dbmPropDB.qryProperties.SQL.Text :=
+        'SELECT * FROM tblProperties WHERE AgentID = :SearchTerm';
+      dbmPropDB.qryProperties.Parameters.ParamByName('SearchTerm').Value :=
+        sSearchTerm;
+    end
+    else
+    begin
+      // Search by Address or Area
+      dbmPropDB.qryProperties.Close;
+      dbmPropDB.qryProperties.SQL.Text :=
+        'SELECT * FROM tblProperties WHERE Address LIKE :SearchTerm OR Area LIKE :SearchTerm';
+      dbmPropDB.qryProperties.Parameters.ParamByName('SearchTerm')
+        .Value := '%' + sSearchTerm + '%';
     end;
 
-    dbmPropDB.tblProperties.Next;
-  end;
-  // If Found it will show the stock for the item
-  if bFound = true then
-  begin
-    showMessage('Stock: ' + IntToStr(iStock));
+    dbmPropDB.qryProperties.Open;
+
+    if not dbmPropDB.qryProperties.IsEmpty then
+    begin
+      bFound := True;
+      LoadPropertiesForPage(1); // Load the results starting from the first page
+    end;
+
+    if not bFound then
+      ShowMessage('No property found containing "' + sSearchTerm + '".');
   end
   else
   begin
-    // If it failed, a dialog box will appear
-    showMessage('Product not found');
+    ShowMessage('Please enter a valid search term.');
   end;
 
 end;
 
 procedure TfrmMainDB.btnSortClick(Sender: TObject);
 begin
-  // Sorts the items in ascending order
-  dbmPropDB.tblProperties.Sort := 'Stock ASC';
+  // Modify the SQL query to order by the Price field
+  dbmPropDB.qryProperties.SQL.Text :=
+    'SELECT * FROM tblProperties ORDER BY Price ASC';
+
+  // Reopen the query to apply the new SQL command
+  dbmPropDB.qryProperties.Open;
+
+  // Reload the properties for the current page
+  LoadPropertiesForPage(1);
+
+  // Reset the page tracking
+  iCurrentPage := 1;
+  iTotalPages := Ceil(dbmPropDB.qryProperties.RecordCount / 6);
 end;
 
 procedure TfrmMainDB.Button2Click(Sender: TObject);
@@ -168,13 +238,43 @@ end;
 
 procedure TfrmMainDB.Exit1Click(Sender: TObject);
 begin
-  exit;
+  Exit;
 end;
 
 procedure TfrmMainDB.FormCreate(Sender: TObject);
+var
+  i: Integer;
 begin
   iTotalPages := Ceil(dbmPropDB.qryProperties.RecordCount / 6);
-  LoadPropertiesForPage(1);
+  LoadPropertyDetails;
+
+  imgArray[1] := img1;
+  imgArray[2] := img2;
+  imgArray[3] := img3;
+  imgArray[4] := img4;
+  imgArray[5] := img5;
+  imgArray[6] := img6;
+
+  lblAddressArray[1] := lblImg1Address;
+  lblAddressArray[2] := lblImg2Address;
+  lblAddressArray[3] := lblImg3Address;
+  lblAddressArray[4] := lblImg4Address;
+  lblAddressArray[5] := lblImg5Address;
+  lblAddressArray[6] := lblImg6Address;
+
+  lblPriceArray[1] := lblImg1Price;
+  lblPriceArray[2] := lblImg2Price;
+  lblPriceArray[3] := lblImg3Price;
+  lblPriceArray[4] := lblImg4Price;
+  lblPriceArray[5] := lblImg5Price;
+  lblPriceArray[6] := lblImg6Price;
+
+  lblAreaArray[1] := lblImg1Area;
+  lblAreaArray[2] := lblImg2Area;
+  lblAreaArray[3] := lblImg3Area;
+  lblAreaArray[4] := lblImg4Area;
+  lblAreaArray[5] := lblImg5Area;
+  lblAreaArray[6] := lblImg6Area;
 end;
 
 procedure TfrmMainDB.FormShow(Sender: TObject);
@@ -182,49 +282,67 @@ var
   sSuppID: string;
 begin
   // If User is admin, activate Add and Delete button
-  if bAdmin = true then
+  if bAdmin = True then
   begin
-    // .Enabled := true;
+    MainMenu1.Items.Find('Admin').Enabled := True;
+  end
+  else
+  begin
+    MainMenu1.Items.Find('Admin').Enabled := False;
   end;
 
   LoadPropertyDetails;
-  Timer1.Enabled := FALSE;
+  Timer1.Enabled := False;
   // While not end of database, look for all items that are low in stock and Display their Names.
+end;
+
+function TfrmMainDB.IsNumeric(const Value: string): Boolean;
+var
+  TestValue: Double;
+begin
+  Result := TryStrToFloat(Value, TestValue);
 end;
 
 procedure TfrmMainDB.LoadPropertiesForPage(Page: Integer);
 var
-  StartRecord: Integer;
-  i: Integer;
+  i, StartIndex: Integer;
+  Price: Currency;
 begin
-  StartRecord := (Page - 1) * 6;
+  StartIndex := (iCurrentPage - 1) * 6;
   dbmPropDB.qryProperties.First;
-  dbmPropDB.qryProperties.MoveBy(StartRecord);
+  dbmPropDB.qryProperties.MoveBy(StartIndex);
 
   for i := 1 to 6 do
   begin
     if not dbmPropDB.qryProperties.Eof then
     begin
       // Load the image and labels for the current property
-      // Example:
-      img[i].Picture.LoadFromFile(
+      imgArray[i].Picture.LoadFromFile(
         'D:\usb backup\OSWALD_AUMULLER_PAT2024\Properties\' +
           dbmPropDB.qryProperties.FieldByName('PropertyID').AsString + '.jpg');
-      lblimg[i]Address.Caption := dbmPropDB.qryProperties.FieldByName('Address')
+
+      lblAddressArray[i].Caption := dbmPropDB.qryProperties.FieldByName
+        ('Address').AsString;
+
+      // Retrieve and format the price
+      Price := dbmPropDB.qryProperties.FieldByName('Price').AsCurrency;
+      lblPriceArray[i].Caption := FormatCurr('R ###,###,##0.00', Price);
+
+      lblAreaArray[i].Caption := dbmPropDB.qryProperties.FieldByName('Area')
         .AsString;
-      lblimg[i]Price.Caption := dbmPropDB.qryProperties.FieldByName('Price')
-        .AsString;
-      lblimg[i]Area.Caption := dbmPropDB.qryProperties.FieldByName('Area')
-        .AsString;
+
+      // Move to the next record
       dbmPropDB.qryProperties.Next;
     end
     else
     begin
-      img[i].Picture := nil; // Clear the image if there's no property
-      lblimg[i]Address.Caption := '';
-      lblimg[i]Price.Caption := '';
-      lblimg[i]Area.Caption := '';
+      // Clear the image and labels if there's no property to display
+      imgArray[i].Picture := nil;
+      lblAddressArray[i].Caption := '';
+      lblPriceArray[i].Caption := '';
+      lblAreaArray[i].Caption := '';
     end;
+
   end;
 
   // Enable/disable navigation buttons
@@ -347,3 +465,4 @@ begin
 end;
 
 end.
+

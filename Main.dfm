@@ -13,7 +13,7 @@ object frmMainDB: TfrmMainDB
   Menu = MainMenu1
   OldCreateOrder = False
   ScreenSnap = True
-  OnShow = FormShow
+  OnShow = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object img1: TImage
@@ -339,7 +339,7 @@ object frmMainDB: TfrmMainDB
     Top = 475
     Width = 155
     Height = 34
-    Caption = 'Sort Items by Price'
+    Caption = 'Sort Items by Price '
     TabOrder = 4
     OnClick = btnSortClick
   end
@@ -368,6 +368,7 @@ object frmMainDB: TfrmMainDB
     Height = 25
     Caption = 'Display'
     TabOrder = 6
+    OnClick = btnDisplayClick
   end
   object MainMenu1: TMainMenu
     Left = 1088

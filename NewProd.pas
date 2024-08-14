@@ -44,14 +44,14 @@ var
 implementation
 
 // Used to bypass Circular Unit Reference Error
-uses Main;
+uses Main, Admin;
 {$R *.dfm}
 
 procedure TfrmNew.BackClick(Sender: TObject);
 begin
   // Go Back to Main Screen
   frmNew.Hide;
-  frmMainDB.Show;
+  AdminManagement.Show;
 end;
 
 procedure TfrmNew.ConfirmClick(Sender: TObject);

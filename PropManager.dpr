@@ -17,9 +17,9 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMainDB, frmMainDB);
   Application.CreateForm(TfrmPAT2024, frmPAT2024);
   Application.CreateForm(TfrmSignUp, frmSignUp);
-  Application.CreateForm(TfrmMainDB, frmMainDB);
   Application.CreateForm(TfrmNew, frmNew);
   Application.CreateForm(TdbmPropDB, dbmPropDB);
   Application.CreateForm(TdbmPropImpl, dbmPropImpl);

@@ -46,7 +46,7 @@ object SubmitApplication: TSubmitApplication
   end
   object ProgressBar1: TProgressBar
     Left = 200
-    Top = 154
+    Top = 353
     Width = 150
     Height = 17
     TabOrder = 0
