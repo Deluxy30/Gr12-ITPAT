@@ -87,6 +87,7 @@ object dbmPropDB: TdbmPropDB
     Top = 104
   end
   object qryAgents: TADOQuery
+    Active = True
     Connection = conPropDB
     CursorType = ctStatic
     DataSource = dscAgents
@@ -118,7 +119,7 @@ object dbmPropDB: TdbmPropDB
     Left = 296
     Top = 240
   end
-  object qryPropDetails: TADOQuery
+  object qryPropertyDetails: TADOQuery
     Active = True
     Connection = conPropDB
     CursorType = ctStatic

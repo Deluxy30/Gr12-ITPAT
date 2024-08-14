@@ -4,18 +4,23 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, conPropDB, Grids, DBGrids;
+  Dialogs, StdCtrls, conPropDB, Grids, DBGrids, Menus;
 
 type
   TAdminManagement = class(TForm)
     btnDelete: TButton;
     dbgProperties: TDBGrid;
     btnAddProp: TButton;
-    Button1: TButton;
+    dbgUsers: TDBGrid;
+    btnUser: TButton;
+    dbgAgents: TDBGrid;
+    btnAddAgent: TButton;
+    MainMenu1: TMainMenu;
+    GobacktoMain1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure btnAddPropClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure GobacktoMain1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,13 +33,12 @@ var
 implementation
 
 uses Main, NewProd;
-
 {$R *.dfm}
 
 procedure TAdminManagement.btnAddPropClick(Sender: TObject);
 begin
-frmNew.show;
-AdminManagement.Hide;
+  frmNew.show;
+  AdminManagement.Hide;
 
 end;
 
@@ -91,16 +95,36 @@ begin
     ShowMessage('No property selected.');
 end;
 
-procedure TAdminManagement.Button1Click(Sender: TObject);
+procedure TAdminManagement.FormCreate(Sender: TObject);
+var
+  i: integer;
 begin
-AdminManagement.Hide;
-frmMainDB.show;
-
+  { dbgProperties.DataSource := dbmPropDB.dscProperties;
+    dbgUsers.DataSource := dbmPropDB.dscUsers;
+    dbgAgents.DataSource := dbmPropDB.dscAgents;
+    // Adjust column widths to fit the content
+    for i := 0 to dbgProperties.Columns.Count - 1 do
+    begin
+    dbgProperties.Columns[i].Width := dbgProperties.Canvas.TextWidth
+    (dbgProperties.Columns[i].Field.DisplayLabel) + 30;
+    end;
+    for i := 0 to dbgUsers.Columns.Count - 1 do
+    begin
+    dbgUsers.Columns[i].Width := dbgUsers.Canvas.TextWidth
+    (dbgUsers.Columns[i].Field.DisplayLabel) + 30;
+    end;
+    for i := 0 to dbgAgents.Columns.Count - 1 do
+    begin
+    dbgAgents.Columns[i].Width := dbgAgents.Canvas.TextWidth
+    (dbgAgents.Columns[i].Field.DisplayLabel) + 30;
+    end; }
 end;
 
-procedure TAdminManagement.FormCreate(Sender: TObject);
+procedure TAdminManagement.GobacktoMain1Click(Sender: TObject);
 begin
-  dbgProperties.DataSource := dbmPropDB.dscProperties;
+  AdminManagement.Hide;
+  frmMainDB.show;
+
 end;
 
 end.

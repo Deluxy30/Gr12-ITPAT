@@ -11,6 +11,7 @@ object frmPAT2024: TfrmPAT2024
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
   object Image3: TImage
@@ -10672,13 +10673,13 @@ object frmPAT2024: TfrmPAT2024
     Left = 375
     Top = -1
     Width = 458
-    Height = 82
+    Height = 170
     Brush.Color = clMedGray
     Pen.Color = 16744448
   end
   object lblCreatAcc: TLabel
-    Left = 689
-    Top = 87
+    Left = 702
+    Top = 133
     Width = 122
     Height = 18
     Cursor = crHandPoint
@@ -10692,7 +10693,7 @@ object frmPAT2024: TfrmPAT2024
     OnClick = lblCreatAccClick
   end
   object Label2: TLabel
-    Left = 406
+    Left = 375
     Top = 46
     Width = 84
     Height = 18
@@ -10705,7 +10706,7 @@ object frmPAT2024: TfrmPAT2024
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 401
+    Left = 375
     Top = 8
     Width = 89
     Height = 18
@@ -12676,8 +12677,24 @@ object frmPAT2024: TfrmPAT2024
     Stretch = True
     OnClick = Image4Click
   end
+  object lblUsername: TLabel
+    Left = 400
+    Top = 96
+    Width = 58
+    Height = 13
+    Caption = 'lblUsername'
+    Visible = False
+  end
+  object lblPassword: TLabel
+    Left = 400
+    Top = 115
+    Width = 56
+    Height = 13
+    Caption = 'lblPassword'
+    Visible = False
+  end
   object edtPassword: TEdit
-    Left = 521
+    Left = 478
     Top = 47
     Width = 155
     Height = 21
@@ -12685,15 +12702,15 @@ object frmPAT2024: TfrmPAT2024
     TabOrder = 0
   end
   object edtUserName: TEdit
-    Left = 521
+    Left = 478
     Top = 8
     Width = 155
     Height = 21
     TabOrder = 1
   end
   object btnLogin: TButton
-    Left = 698
-    Top = 6
+    Left = 680
+    Top = 8
     Width = 104
     Height = 39
     Caption = 'Login'
@@ -12701,8 +12718,8 @@ object frmPAT2024: TfrmPAT2024
     OnClick = btnLoginClick
   end
   object chkShow: TCheckBox
-    Left = 705
-    Top = 51
+    Left = 687
+    Top = 53
     Width = 97
     Height = 17
     Caption = 'Show Password'
@@ -12714,5 +12731,13 @@ object frmPAT2024: TfrmPAT2024
     ParentFont = False
     TabOrder = 3
     OnClick = chkShowClick
+  end
+  object chkRemember: TCheckBox
+    Left = 687
+    Top = 76
+    Width = 97
+    Height = 17
+    Caption = 'Remember me'
+    TabOrder = 4
   end
 end

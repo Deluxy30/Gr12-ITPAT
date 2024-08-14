@@ -23,12 +23,17 @@ type
     Image2: TImage;
     Image3: TImage;
     Image4: TImage;
+    chkRemember: TCheckBox;
+    lblUsername: TLabel;
+    lblPassword: TLabel;
     procedure btnLoginClick(Sender: TObject);
     procedure lblCreatAccClick(Sender: TObject);
     procedure chkShowClick(Sender: TObject);
     procedure btnQuitClick(Sender: TObject);
     procedure Label3Click(Sender: TObject);
     procedure Image4Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure lblForgorClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,6 +43,7 @@ type
 var
   frmPAT2024: TfrmPAT2024;
   bAdmin: boolean;
+  lblForgotPassword: TLabel;
 
 implementation
 
@@ -49,6 +55,7 @@ var
   sPassword, sUserName, sLine, sDate, sTime: string;
   bFlag: boolean;
   tLogin: textfile;
+  outF: textfile;
 begin
 
   bFlag := False;
@@ -86,8 +93,21 @@ begin
       end; // if (sUsername='') then
     end; // else
     if bFlag = False then
+    begin
       showmessage('User or Password Incorrect' + #13 +
           'Otherwise create new account');
+
+      lblForgotPassword := TLabel.Create(frmPAT2024);
+      lblForgotPassword.Parent := frmPAT2024;
+      lblForgotPassword.Caption := 'Forgot Password?';
+      lblForgotPassword.Left := 478;
+      lblForgotPassword.Top := 74;
+      lblForgotPassword.Color := clLime;
+      lblForgotPassword.Transparent := False;
+      lblForgotPassword.Enabled := True;
+      lblForgotPassword.OnClick := lblForgorClick;
+    end;
+
     if dbmPropDB.tblUsers['UserType'] = 'Admin' then
     begin
       bAdmin := True;
@@ -114,6 +134,19 @@ begin
 
     end;
   end;
+  // Check if the "Remember Me" checkbox is checked
+  if chkRemember.Checked then
+  begin
+    AssignFile(outF, 'LastLogin.txt'); // Assign the file
+    Rewrite(outF); // Create or overwrite the file
+    Writeln(outF, edtUserName.Text + '#' + edtPassword.Text);
+    // Write the username and password to the file
+    CloseFile(outF); // Close the file
+  end
+  else
+  begin
+    Rewrite(outF);
+  end;
 end;
 
 procedure TfrmPAT2024.btnQuitClick(Sender: TObject);
@@ -128,6 +161,26 @@ begin
     edtPassword.PasswordChar := #0;
   if chkShow.Checked = False then
     edtPassword.PasswordChar := '*';
+
+end;
+
+procedure TfrmPAT2024.FormActivate(Sender: TObject);
+var
+  inF: textfile;
+  sLine: string;
+  iHash: integer;
+begin
+  // lblForgor.Visible := False;
+  AssignFile(inF, 'LastLogin.txt');
+  if FileExists('LastLogin.txt') then
+  begin
+    Reset(inF);
+    Readln(inF, sLine);
+    iHash := Pos('#', sLine);
+    edtUserName.Text := Copy(sLine, 1, iHash - 1);
+    edtPassword.Text := Copy(sLine, iHash + 1);
+  end;
+  CloseFile(inF);
 
 end;
 
@@ -149,6 +202,46 @@ begin
   // Opens Create Account window
   frmSignUp.Show;
   frmPAT2024.Hide;
+end;
+
+procedure TfrmPAT2024.lblForgorClick(Sender: TObject);
+var
+  UserID, PhoneNumber, FirstName: string;
+begin
+  // Prompt for ID
+  if not InputQuery('Forgot Password', 'Enter your ID:', UserID) then
+    exit;
+
+  // Prompt for Phone Number
+  if not InputQuery('Forgot Password', 'Enter your First Name:', FirstName) then
+    exit;
+
+  try // Your TADOConnection component
+    dbmPropDB.qryProperties.SQL.Text :=
+      'SELECT Username, Password FROM tblUsers WHERE ID = :UserID AND FirstName = :FirstName';
+    dbmPropDB.qryProperties.Parameters.ParamByName('UserID').Value := UserID;
+    dbmPropDB.qryProperties.Parameters.ParamByName('FirstName')
+      .Value := FirstName;
+    dbmPropDB.qryProperties.Open;
+
+    // Check if a record was found
+    if not dbmPropDB.qryProperties.IsEmpty then
+    begin
+      lblUsername.Caption := 'Username: ' + dbmPropDB.qryProperties.FieldByName
+        ('Username').AsString;
+      lblPassword.Caption := 'Password: ' + dbmPropDB.qryProperties.FieldByName
+        ('Password').AsString;
+      lblUsername.Visible := True;
+      lblPassword.Visible := True;
+    end
+    else
+    begin
+      showmessage(
+        'No matching user found. Please check your details and try again.');
+    end;
+  finally
+    dbmPropDB.qryProperties.Free;
+  end;
 end;
 
 end.

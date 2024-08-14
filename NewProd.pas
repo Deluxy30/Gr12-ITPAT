@@ -31,7 +31,8 @@ type
     procedure ConfirmClick(Sender: TObject);
     procedure BackClick(Sender: TObject);
     procedure FillComboBox;
-      procedure SaveProperty;
+    procedure SaveProperty;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,9 +57,9 @@ end;
 
 procedure TfrmNew.ConfirmClick(Sender: TObject);
 begin
-SaveProperty;
-    frmMainDB.Show;
-    frmNew.Hide;
+  SaveProperty;
+  frmMainDB.Show;
+  frmNew.Hide;
 end;
 
 procedure TfrmNew.FillComboBox;
@@ -94,6 +95,10 @@ begin
 
 end;
 
+procedure TfrmNew.FormShow(Sender: TObject);
+begin
+  FillComboBox;
+end;
 
 procedure TfrmNew.SaveProperty;
 var
@@ -124,17 +129,21 @@ begin
     AreaAbbreviation := 'OTH'; // Default for other areas
 
   // Get the current record count from tblProperties
-  dbmPropDB.qryProperties.SQL.Text := 'SELECT COUNT(*) AS RecordCount FROM tblProperties';
+  dbmPropDB.qryProperties.SQL.Text :=
+    'SELECT COUNT(*) AS RecordCount FROM tblProperties';
   dbmPropDB.qryProperties.Open;
-  RecordCount := dbmPropDB.qryProperties.FieldByName('RecordCount').AsInteger + 1;
+  RecordCount := dbmPropDB.qryProperties.FieldByName('RecordCount')
+    .AsInteger + 1;
   dbmPropDB.qryProperties.Close;
 
   // Construct the Property ID
   PropertyID := 'PRP-' + AreaAbbreviation + '-' + IntToStr(RecordCount);
 
   // Lookup the AgentID based on the selected agent's name in cboAgent
-  dbmPropDB.qryProperties.SQL.Text := 'SELECT AgentID FROM tblAgents WHERE AgentName = :AgentName';
-  dbmPropDB.qryProperties.Parameters.ParamByName('AgentName').Value := cmbAgent.Text;
+  dbmPropDB.qryProperties.SQL.Text :=
+    'SELECT AgentID FROM tblAgents WHERE AgentName = :AgentName';
+  dbmPropDB.qryProperties.Parameters.ParamByName('AgentName')
+    .Value := cmbAgent.Text;
   dbmPropDB.qryProperties.Open;
   AgentID := dbmPropDB.qryProperties.FieldByName('AgentID').AsString;
   dbmPropDB.qryProperties.Close;
@@ -144,20 +153,25 @@ begin
     'INSERT INTO tblProperties (PropertyID, Address, Area, Price, AgentID) ' +
     'VALUES (:PropertyID, :Address, :Area, :Price, :AgentID)';
 
-  dbmPropDB.qryProperties.Parameters.ParamByName('PropertyID').Value := PropertyID;
-  dbmPropDB.qryProperties.Parameters.ParamByName('Address').Value := edtAddress.Text;
+  dbmPropDB.qryProperties.Parameters.ParamByName('PropertyID').Value :=
+    PropertyID;
+  dbmPropDB.qryProperties.Parameters.ParamByName('Address').Value :=
+    edtAddress.Text;
   dbmPropDB.qryProperties.Parameters.ParamByName('Area').Value := edtSize.Text;
-  dbmPropDB.qryProperties.Parameters.ParamByName('Price').Value := edtPrice.Text;
+  dbmPropDB.qryProperties.Parameters.ParamByName('Price')
+    .Value := edtPrice.Text;
   dbmPropDB.qryProperties.Parameters.ParamByName('AgentID').Value := AgentID;
 
   dbmPropDB.qryProperties.ExecSQL;
 
   // Save the image with the Property ID
- if OpenDialog1.Execute then
+  if OpenDialog1.Execute then
   begin
-  OpenDialog1.Filter := 'Image Files|*.jpg;*.jpeg;*.png;*.bmp';
-  // Code to handle the file selection
-    ImageFileName := 'D:\usb backup\OSWALD_AUMULLER_PAT2024\Properties\' + PropertyID + ExtractFileExt(OpenDialog1.FileName);
+    OpenDialog1.Filter := 'Image Files|*.jpg;*.jpeg;*.png;*.bmp';
+    // Code to handle the file selection
+    ImageFileName :=
+      'D:\usb backup\OSWALD_AUMULLER_PAT2024\Properties\' + PropertyID +
+      ExtractFileExt(OpenDialog1.FileName);
     if FileExists(OpenDialog1.FileName) then
       CopyFile(PChar(OpenDialog1.FileName), PChar(ImageFileName), False);
   end;

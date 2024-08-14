@@ -13,6 +13,8 @@ object frmMainDB: TfrmMainDB
   Menu = MainMenu1
   OldCreateOrder = False
   ScreenSnap = True
+  OnDestroy = FormDestroy
+  OnHide = FormHide
   OnShow = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -22,6 +24,7 @@ object frmMainDB: TfrmMainDB
     Width = 169
     Height = 169
     Stretch = True
+    OnClick = img1Click
   end
   object img4: TImage
     Left = 36
@@ -29,6 +32,7 @@ object frmMainDB: TfrmMainDB
     Width = 169
     Height = 169
     Stretch = True
+    OnClick = img4Click
   end
   object img2: TImage
     Left = 396
@@ -36,6 +40,7 @@ object frmMainDB: TfrmMainDB
     Width = 169
     Height = 169
     Stretch = True
+    OnClick = img2Click
   end
   object img3: TImage
     Left = 736
@@ -43,6 +48,7 @@ object frmMainDB: TfrmMainDB
     Width = 169
     Height = 169
     Stretch = True
+    OnClick = img3Click
   end
   object img5: TImage
     Left = 396
@@ -50,6 +56,7 @@ object frmMainDB: TfrmMainDB
     Width = 169
     Height = 169
     Stretch = True
+    OnClick = img5Click
   end
   object img6: TImage
     Left = 736
@@ -57,6 +64,7 @@ object frmMainDB: TfrmMainDB
     Width = 169
     Height = 169
     Stretch = True
+    OnClick = img6Click
   end
   object lblImg1Address: TLabel
     Left = 211

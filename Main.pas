@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, conPropDB, Login, jpeg,
-  ExtCtrls, Menus, Math, FileCtrl;
+  ExtCtrls, Menus, Math, FileCtrl, PropertyDetails, Generics.Collections;
 
 type
   TfrmMainDB = class(TForm)
@@ -64,20 +64,33 @@ type
     procedure btnPreviousPageClick(Sender: TObject);
     function IsNumeric(const Value: string): Boolean;
     procedure btnDisplayClick(Sender: TObject);
+    procedure imgPropertyClick(Sender: TObject);
+    procedure FormHide(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure img1Click(Sender: TObject);
+    procedure img2Click(Sender: TObject);
+    procedure img3Click(Sender: TObject);
+    procedure img4Click(Sender: TObject);
+    procedure img5Click(Sender: TObject);
+    procedure img6Click(Sender: TObject);
+
   private
     { Private declarations }
     imgArray: array [1 .. 6] of TImage;
     lblAddressArray: array [1 .. 6] of TLabel;
     lblPriceArray: array [1 .. 6] of TLabel;
     lblAreaArray: array [1 .. 6] of TLabel;
+
   public
     { Public declarations }
+
   end;
 
 var
   frmMainDB: TfrmMainDB;
   iTotalPages: Integer;
   iCurrentPage: Integer = 1;
+  PropertyIDMap: TDictionary<Integer, String>;
 
 implementation
 
@@ -213,7 +226,7 @@ end;
 procedure TfrmMainDB.Button2Click(Sender: TObject);
 begin
   // Shows the Add Item window and closes the main window
-  frmMainDB.hide;
+  frmMainDB.Hide;
   NewProd.frmNew.Show;
 end;
 
@@ -277,6 +290,16 @@ begin
   lblAreaArray[6] := lblImg6Area;
 end;
 
+procedure TfrmMainDB.FormDestroy(Sender: TObject);
+begin
+  PropertyIDMap.Free;
+end;
+
+procedure TfrmMainDB.FormHide(Sender: TObject);
+begin
+  PropertyIDMap.Free;
+end;
+
 procedure TfrmMainDB.FormShow(Sender: TObject);
 var
   sSuppID: string;
@@ -290,10 +313,159 @@ begin
   begin
     MainMenu1.Items.Find('Admin').Enabled := False;
   end;
-
   LoadPropertyDetails;
   Timer1.Enabled := False;
-  // While not end of database, look for all items that are low in stock and Display their Names.
+  PropertyIDMap := TDictionary<Integer, String>.Create;
+
+end;
+
+procedure TfrmMainDB.img1Click(Sender: TObject);
+begin
+  img1.OnClick := imgPropertyClick;
+end;
+
+procedure TfrmMainDB.img2Click(Sender: TObject);
+begin
+  img2.OnClick := imgPropertyClick;
+end;
+
+procedure TfrmMainDB.img3Click(Sender: TObject);
+begin
+  img3.OnClick := imgPropertyClick;
+end;
+
+procedure TfrmMainDB.img4Click(Sender: TObject);
+begin
+  img4.OnClick := imgPropertyClick;
+end;
+
+procedure TfrmMainDB.img5Click(Sender: TObject);
+begin
+  img5.OnClick := imgPropertyClick;
+end;
+
+procedure TfrmMainDB.img6Click(Sender: TObject);
+begin
+  img6.OnClick := imgPropertyClick;
+end;
+
+procedure TfrmMainDB.imgPropertyClick(Sender: TObject);
+var
+  PropertyID, AgentID, AgentImagePath, AgencyName: string;
+  img: TImage;
+begin
+  if Sender is TImage then
+  begin
+    img := TImage(Sender);
+    if Assigned(img.Picture.Graphic) then
+    begin
+      // Assuming Tag stores the index of the property
+      PropertyID := dbmPropDB.qryProperties.FieldByName('PropertyID').AsString;
+
+      // Use qryProperties to get basic property information
+      dbmPropDB.qryProperties.Close;
+      dbmPropDB.qryProperties.SQL.Text :=
+        'SELECT Address, Price, Size, AgentID FROM tblProperties WHERE PropertyID = :PropertyID';
+      dbmPropDB.qryProperties.Parameters.ParamByName('PropertyID').Value :=
+        PropertyID;
+      dbmPropDB.qryProperties.Open;
+
+      // Use qryPropertyDetails to get additional details
+      dbmPropDB.qryPropertyDetails.Close;
+      dbmPropDB.qryPropertyDetails.SQL.Text :=
+        'SELECT Bedrooms, Bathrooms, Pool, PetFriendly FROM tblPropDetails WHERE PropertyID = :PropertyID';
+      dbmPropDB.qryPropertyDetails.Parameters.ParamByName('PropertyID')
+        .Value := PropertyID;
+      dbmPropDB.qryPropertyDetails.Open;
+
+      // Load the property details into the RichEdit
+      with frmPropDetails.redPropDetails do
+      begin
+        // Address
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Address:');
+        SelAttributes.Style := [];
+        Lines.Add(dbmPropDB.qryProperties.FieldByName('Address').AsString);
+        Lines.Add('');
+
+        // Price
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Price:');
+        SelAttributes.Style := [];
+        Lines.Add(FormatCurr('0.00',
+            dbmPropDB.qryProperties.FieldByName('Price').AsCurrency));
+        Lines.Add('');
+
+        // Size
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Size:');
+        SelAttributes.Style := [];
+        Lines.Add(dbmPropDB.qryProperties.FieldByName('Size').AsString);
+        Lines.Add('');
+
+        // Bedrooms
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Bedrooms:');
+        SelAttributes.Style := [];
+        Lines.Add(IntToStr(dbmPropDB.qryPropertyDetails.FieldByName('Bedrooms')
+              .AsInteger));
+        Lines.Add('');
+
+        // Bathrooms
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Bathrooms:');
+        SelAttributes.Style := [];
+        Lines.Add(IntToStr(dbmPropDB.qryPropertyDetails.FieldByName('Bathrooms')
+              .AsInteger));
+        Lines.Add('');
+
+        // Pool
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Pool:');
+        SelAttributes.Style := [];
+        if dbmPropDB.qryPropertyDetails.FieldByName('Pool').AsBoolean then
+          Lines.Add('Yes')
+        else
+          Lines.Add('No');
+        Lines.Add('');
+
+        // Pet Friendly
+        SelAttributes.Style := [fsBold];
+        Lines.Add('Pet Friendly:');
+        SelAttributes.Style := [];
+        if dbmPropDB.qryPropertyDetails.FieldByName('PetFriendly')
+          .AsBoolean then
+          Lines.Add('Yes')
+        else
+          Lines.Add('No');
+      end;
+
+      // Load Agent's Image and Name
+      AgentID := dbmPropDB.qryProperties.FieldByName('AgentID').AsString;
+      dbmPropDB.qryProperties.Close;
+      dbmPropDB.qryProperties.SQL.Text :=
+        'SELECT AgencyName FROM tblAgents WHERE AgentID = :AgentID';
+      dbmPropDB.qryProperties.Parameters.ParamByName('AgentID')
+        .Value := AgentID;
+      dbmPropDB.qryProperties.Open;
+      AgencyName := dbmPropDB.qryProperties.FieldByName('AgencyName').AsString;
+
+      AgentImagePath :=
+        'D:\usb backup\OSWALD_AUMULLER_PAT2024\Agency\' + AgencyName + '\' +
+        AgentID + '.jpg';
+      if FileExists(AgentImagePath) then
+        frmPropDetails.imgAgency.Picture.LoadFromFile(AgentImagePath)
+      else
+        frmPropDetails.imgAgency.Picture := nil; // Clear the image if not found
+
+      // Display AgentID and Name
+      frmPropDetails.lblAgentName.Caption := 'Agent ID: ' + AgentID + ' - ' +
+        AgencyName;
+
+      // Show the Property Details form
+      frmPropDetails.Show;
+    end;
+  end;
 end;
 
 function TfrmMainDB.IsNumeric(const Value: string): Boolean;
@@ -307,6 +479,7 @@ procedure TfrmMainDB.LoadPropertiesForPage(Page: Integer);
 var
   i, StartIndex: Integer;
   Price: Currency;
+  PropertyID: string;
 begin
   StartIndex := (iCurrentPage - 1) * 6;
   dbmPropDB.qryProperties.First;
@@ -316,6 +489,7 @@ begin
   begin
     if not dbmPropDB.qryProperties.Eof then
     begin
+      PropertyID := dbmPropDB.qryProperties.FieldByName('PropertyID').AsString;
       // Load the image and labels for the current property
       imgArray[i].Picture.LoadFromFile(
         'D:\usb backup\OSWALD_AUMULLER_PAT2024\Properties\' +
@@ -323,7 +497,9 @@ begin
 
       lblAddressArray[i].Caption := dbmPropDB.qryProperties.FieldByName
         ('Address').AsString;
-
+      // Store the PropertyID in the global dictionary using i as the key
+      PropertyIDMap.AddOrSetValue(i, PropertyID);
+      imgArray[i].Tag := i;
       // Retrieve and format the price
       Price := dbmPropDB.qryProperties.FieldByName('Price').AsCurrency;
       lblPriceArray[i].Caption := FormatCurr('R ###,###,##0.00', Price);
@@ -456,8 +632,6 @@ begin
           lblImg6Area.Caption := dbmPropDB.qryProperties.FieldByName('Area')
             .AsString;
         end;
-
-      // Repeat for img3, img4, img5, img6...
     end;
 
     dbmPropDB.qryProperties.Next; // Move to the next record
@@ -465,4 +639,3 @@ begin
 end;
 
 end.
-

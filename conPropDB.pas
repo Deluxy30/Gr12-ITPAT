@@ -21,7 +21,7 @@ type
     qryAgents: TADOQuery;
     qryProperties: TADOQuery;
     qryUsers: TADOQuery;
-    qryPropDetails: TADOQuery;
+    qryPropertyDetails: TADOQuery;
     qryTransactions: TADOQuery;
   private
     { Private declarations }

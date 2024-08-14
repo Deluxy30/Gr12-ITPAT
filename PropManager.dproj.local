@@ -40,6 +40,8 @@
     <Transaction>2024/08/13 18:04:04.773.dfm,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit3.dfm=D:\usb backup\OSWALD_AUMULLER_PAT2024\SubmitApp.dfm</Transaction>
     <Transaction>2024/08/13 19:42:32.548.pas,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.pas=D:\usb backup\OSWALD_AUMULLER_PAT2024\Admin.pas</Transaction>
     <Transaction>2024/08/13 19:42:32.548.dfm,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.dfm=D:\usb backup\OSWALD_AUMULLER_PAT2024\Admin.dfm</Transaction>
+    <Transaction>2024/08/14 15:03:01.379.pas,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.pas=D:\usb backup\OSWALD_AUMULLER_PAT2024\PropertyDetails.pas</Transaction>
+    <Transaction>2024/08/14 15:03:01.379.dfm,D:\usb backup\OSWALD_AUMULLER_PAT2024\Unit1.dfm=D:\usb backup\OSWALD_AUMULLER_PAT2024\PropertyDetails.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="__history"/>
@@ -61,5 +63,7 @@
     <File Path="SubmitApp.dfm"/>
     <File Path="Admin.pas"/>
     <File Path="Admin.dfm"/>
+    <File Path="PropertyDetails.pas"/>
+    <File Path="PropertyDetails.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

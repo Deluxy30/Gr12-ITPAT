@@ -44,31 +44,34 @@
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="Login.pas">
-				<Form>frmPAT2024</Form>
+				<Form> frmPAT2024 </Form>
 			</DCCReference>
 			<DCCReference Include="SignUp.pas">
-				<Form>frmSignUp</Form>
+				<Form> frmSignUp </Form>
 			</DCCReference>
 			<DCCReference Include="Main.pas">
-				<Form>frmMainDB</Form>
+				<Form> frmMainDB </Form>
 			</DCCReference>
 			<DCCReference Include="NewProd.pas">
-				<Form>frmNew</Form>
+				<Form> frmNew </Form>
 			</DCCReference>
 			<DCCReference Include="conPropDB.pas">
-				<Form>dbmPropDB</Form>
+				<Form> dbmPropDB</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="conPropImplementDB.pas">
-				<Form>dbmPropImpl</Form>
+				<Form> dbmPropImpl</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="Validation_U.pas"/>
 			<DCCReference Include="SubmitApp.pas">
-				<Form>SubmitApplication</Form>
+				<Form> SubmitApplication </Form>
 			</DCCReference>
 			<DCCReference Include="Admin.pas">
-				<Form>AdminManagement</Form>
+				<Form> AdminManagement </Form>
+			</DCCReference>
+			<DCCReference Include="PropertyDetails.pas">
+				<Form> frmPropDetails </Form>
 			</DCCReference>
 			<None Include="__history\NewProduct.dfm.~2~"/>
 			<BuildConfiguration Include="Base">

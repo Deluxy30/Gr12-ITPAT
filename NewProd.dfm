@@ -11,6 +11,7 @@ object frmNew: TfrmNew
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label5: TLabel
@@ -166,7 +167,7 @@ object frmNew: TfrmNew
     TabOrder = 10
   end
   object OpenDialog1: TOpenDialog
-    Left = 432
-    Top = 304
+    Left = 400
+    Top = 376
   end
 end
